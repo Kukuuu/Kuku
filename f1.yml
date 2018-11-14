@@ -1,1 +1,11 @@
-
+---
+- hosts: "{{ host }}"
+  gather_facts: False
+  become: "{{ input }}"
+  tasks:
+  - name: Running Command
+    shell: "{{ command }}"
+    register: output
+    ignore_errors: yes
+    
+  - debug: var=output.stdout_lines
